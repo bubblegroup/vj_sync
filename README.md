@@ -55,20 +55,22 @@ Currently, when running this application locally, the application will output th
 A Map with the key being the AWS region and the value being an array of the instances affected. This will be outputted to the console.
 
 ```json
-'us-east-1': [  
-    {
-      instanceId: 'i-xxxxxxx'
-      deadline: '2024-02-14T12:01:51.554Z',
-      region: 'us-east-1',
-      instanceName: ''
-    },
-    {
-      instanceId: 'i-xxxxxxx',
-      deadline: '2024-02-14T20:00:58.869Z',
-      region: 'us-east-1',
-      instanceName: ''
-    }
-  ],
+{
+  'us-east-1': [  
+      {
+        instanceId: 'i-xxxxxxx'
+        deadline: '2024-02-14T12:01:51.554Z',
+        region: 'us-east-1',
+        instanceName: ''
+      },
+      {
+        instanceId: 'i-xxxxxxx',
+        deadline: '2024-02-14T20:00:58.869Z',
+        region: 'us-east-1',
+        instanceName: ''
+      }
+    ],
+}
 ```
 
 ## API Data Structure Examples
