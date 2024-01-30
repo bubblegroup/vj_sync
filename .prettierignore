@@ -1,0 +1,11 @@
+# Only run prettier on JS files for now (ignore .md and .json)
+**/*.json
+**/*.md
+
+# System files
+.git
+
+# Compiled or external code
+node_modules
+coverage
+lib
