@@ -18,6 +18,9 @@
     "url": "git+https://github.com/bubblegroup/vj_sync"
   },
   "author": "@bubblegroup/dev-group-cloud-infra",
+  "contributors": [
+    { "name": "Jerrel Blankenship", "url": "https://github.com/jerrelblankenship" }
+  ],
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/bubblegroup/vj_sync/issues"

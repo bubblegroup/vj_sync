@@ -1,5 +1,5 @@
 # Vanta Alert Sync
-A tool that pulls infrastructure vulnerability alterts from Vanta creates Jira related cards for the Teams to handle. This is currently focused on EC2 instances at the moment.
+A tool that pulls infrastructure vulnerability alterts from [Vanta](https://app.vanta.com) and creates [Jira](https://www.atlassian.com/software/jira) related cards for the Teams to handle. This is currently focused on EC2 instances.
 
 ## Usage
 Currently, this can be ran locally on an engineer's machine.
@@ -58,7 +58,7 @@ A Map with the key being the AWS region and the value being an array of the inst
 {
   "us-east-1": [  
       {
-        "instanceId": "i-xxxxxxx"
+        "instanceId": "i-xxxxxxx",
         "deadline": "2024-02-14T12:01:51.554Z",
         "region": "us-east-1",
         "instanceName": ""
