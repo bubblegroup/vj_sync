@@ -11,6 +11,7 @@ async function main() {
   const vantaClient: VantaClient = new VantaClient()
   const jiraClient: JiraClient = new JiraClient()
 
+  console.info('Now getting the information from Vanta...')
   let vantaData: Edge[] = await vantaClient.getVulnerableResources()
 
   // now we map the vanta data to the new datatype we will be using.
@@ -25,11 +26,25 @@ async function main() {
 
   // Now take the just converted Vanta data and go to AWS to get the
   // remaining information for those resources.
-  const data = await getEc2sByRegion(ec2Resources)
-  console.log(data)
+  console.info('Now getting the regions affected by the Vanta findings...')
+  const vulnerabilityData = await getEc2sByRegion(ec2Resources)
 
   //Finally we take the finalized data to create cards in Jira
-  await jiraClient.postVulnerabilityIssues()
+  console.info('Now taking the finalized data and creating Jira cards for them...')
+  for (const region_key in vulnerabilityData) {
+    if (vulnerabilityData.hasOwnProperty(region_key)) {
+      const resources: ec2Resource[] = vulnerabilityData[region_key]
+
+      try {
+        await jiraClient.postVulnerabilityIssues(region_key, resources)
+      } catch (err: any) {
+        console.error(`Error creating Jira ticket for ${region_key} \n`, err)
+      }
+    }
+  }
+
+  // We are complete
+  console.log('The Vanta/Jira sync is complete.')
 }
 
 /**
