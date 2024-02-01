@@ -65,7 +65,7 @@ export default class AwsClient {
       WithDecryption: true
     })
 
-    let jira_api_data: awsJiraParamaterObject = { username: '', password_token: '' }
+    let jira_api_data: awsJiraParamaterObject = { username: '', password: '' }
 
     await this.ssm_client
       .send(awsCommand)

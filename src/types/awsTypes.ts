@@ -12,5 +12,5 @@ export interface awsEc2ReturnObject {
 
 export interface awsJiraParamaterObject {
   username: string
-  password_token: string
+  password: string
 }
