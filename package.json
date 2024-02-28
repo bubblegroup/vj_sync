@@ -55,7 +55,6 @@
     "dotenv": "^16.4.1",
     "graphql": "^16.8.1",
     "graphql-request": "^6.1.0",
-    "require": "^0.4.4",
     "ts-node": "^10.9.2"
   }
 }
