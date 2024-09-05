@@ -101,9 +101,9 @@ export default class VantaClient {
   /**
    * Parses the AWS region from the url provided using a regular expression.
    * @param externalURL the url that Vanta uses to check that resource
-   * Example:  "https://console.aws.amazon.com/inspector/v2/home?region=us-west-2#/example
+   * Ex: "https://console.aws.amazon.com/xyz/v2/home?region=us-west-2#/ex
    * @returns the AWS region out of the url.
-   * Example: "us-west-2"
+   * Ex: "us-west-2"
    */
   parseRegion(externalURL: string): string | null {
     const regExPattern = /region=([a-zA-Z0-9-]+)/

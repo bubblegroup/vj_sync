@@ -50,13 +50,12 @@ async function main() {
 /**
  * Returns all the ec2 information for the given list based on region.
  * @param resourceList is the list of vulnerabilities that was found from Vanta
- * @returns a Map that has a key of the AWS region, and a list of the ec2 resources
- * that need to be updated in said region.
+ * @returns Map of `AWS Region`->`List:EC2 Instances` that need to be updated.
  */
 async function getEc2sByRegion(resourceList: ec2Resource[]): Promise<{ [key: string]: ec2Resource[] }> {
   const awsClient: AwsClient = new AwsClient()
 
-  // First thing we need to do is extract a list of the unique regions these resources are in
+  // Extract a list of the unique regions these resources are in
   const regionList = Array.from(new Set(resourceList.map((res) => res.region)))
 
   // create the object to house all of these arrays
@@ -73,7 +72,7 @@ async function getEc2sByRegion(resourceList: ec2Resource[]): Promise<{ [key: str
     // list of instance Ids we will getting information on.
     let instanceIds: string[] = ec2List.map((edge) => edge.instanceId)
 
-    // this is the maximum number of instance Ids we can pass into the AWS API call at once.
+    // max number of instance Ids we can pass into the AWS API call at once
     let chunkSize: number = 10
 
     // use our instance ids to fetch additional ec2 metadata
@@ -85,9 +84,9 @@ async function getEc2sByRegion(resourceList: ec2Resource[]): Promise<{ [key: str
     }
 
     /**
-     * Now we need to merge the AWS data that we just got with the data we originally
-     * received from Vanta. This map will allow us to quickly reference the AWS data when
-     * we are updating the Vanta data.
+     * Merge the AWS data that we just got with the Vanta Data.
+     * This map will allow us to quickly reference the AWS data
+     * when we are updating the Vanta data.
      */
     const awsMap = new Map<string, string>()
     awsResourceData.forEach((obj) => {
