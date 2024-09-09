@@ -121,8 +121,8 @@ export default class AwsClient {
   }
 
   /**
-   * This function queries AWS to get the EC2 instance information for the list of
-   * instance Ids submitted for the given region.
+   * Queries AWS to get the EC2 instance information for the
+   * list of instance Ids submitted for the given region.
    * @param instanceIds are the list of ids that we need information on from AWS
    * @param region the region where these instances currently reside
    * @param maxResults [optional] the number of results to return per call.

@@ -17,7 +17,7 @@ export default class JiraClient {
 
     // Find the earliest dueDate for the resources.
     const earliest_dueDate = resources.reduce((earliest, current) => {
-      return current.deadline < earliest.deadline ? current : earliest;
+      return current.deadline < earliest.deadline ? current : earliest
     }).deadline
 
     // map the resources into a user-readable string
