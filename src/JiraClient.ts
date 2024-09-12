@@ -13,7 +13,7 @@ export default class JiraClient {
   async postVulnerabilityIssues(region: string, resources: ec2Resource[]) {
     const api_info: awsJiraParamaterObject = await this.awsClient.GetJiraApiInformation()
     const JIRA_PROJECT_ID = process.env.JIRA_PROJECT_ID as string
-    const JIRA_API_URL = process.env.JIRA_API_BASE_URL + 'api/2/issue'
+    const JIRA_API_URL = process.env.JIRA_API_BASE_URL + '/rest/api/3/issue'
 
     // Find the earliest dueDate for the resources.
     const earliest_dueDate = resources.reduce((earliest, current) => {
@@ -27,9 +27,9 @@ export default class JiraClient {
     })
 
     // Now join all the strings into one with newline characters
-    const resourceCombined = readableResources.join('\n')
+    const resourceCombined = readableResources.join('\\\\')
 
-    const contentDetail = 'The following resources need to be updated according to Vanta:\n\n' + resourceCombined
+    const contentDetail = 'The following resources need to be updated according to Vanta:\\\\' + resourceCombined
 
     const auth = {
       username: api_info.username,
@@ -43,11 +43,10 @@ export default class JiraClient {
 
     const data = {
       fields: {
-        project: { key: JIRA_PROJECT_ID },
+        project: { id: JIRA_PROJECT_ID },
         summary: `Vanta Vulnerability Alerts for EC2s in ${region}`,
         description: contentDetail,
-        issuetype: { name: 'Task' },
-        duedate: earliest_dueDate
+        issuetype: { name: 'Task' }
       }
     }
 
